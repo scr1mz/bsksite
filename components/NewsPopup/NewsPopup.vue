@@ -1,0 +1,123 @@
+<template>
+  <div class="news-popup">
+    <div class="popup-container">
+      <!-- Кнопка закрытия -->
+      <div class="close-button" @click="$emit('close-popup')">
+        <i class="fas fa-times close-button__icon"></i>
+      </div>
+      <div class="scroll-progress"></div>
+      <div class="popup-container__scroll-container" ref="scrollContainer">
+        <!-- Контейнер попап -->
+        <div class="popup-container__content-container">
+          <!-- Хедер попап -->
+          <div class="popup-header" :class="{ 'is_fixed': isHeaderFixed || isMobile, 'title_only': isHeaderFixed }" ref="popupHeader">
+            <ul class="bread">
+              <li class="bread__item">главная</li>
+              <li class="bread__item">новости</li>
+              <li v-if="newsItem.title" class="bread__item">{{ newsItem.title }}</li>
+            </ul>
+          </div>
+          <!-- Попап контент -->
+          <div class="popup-content">
+            <!-- Теги -->
+            <div v-if="newsItem.tags && newsItem.tags.length" class="tags">
+          <span v-for="(tag, index) in newsItem.tags"
+                :key="index"
+                :style="{ color: tag.values[0].color, borderColor: tag.values[0].color }"
+          >
+            {{ tag.values[0]?.name || '' }}
+          </span>
+            </div>
+            <!-- Заголовок -->
+            <h1 v-if="newsItem.title" class="popup-title" ref="popupTitle">{{ newsItem.title }}</h1>
+            <!-- Дата -->
+            <span class="popup-news-date">{{ newsItem.date }}</span>
+            <!-- Контент -->
+            <div v-for="(item, index) in newsItem.content" :key="index">
+              <p v-if="item.type === 'text'">{{ item.content }}</p>
+              <img v-if="item.type === 'mediaBlock'" :src="item.element.src" alt="News Image"/>
+            </div>
+
+            <!-- Следующая статья -->
+            <h3>Следующая статья</h3>
+            <NewsCard :newsItem="newsItem.next" @open-popup="openPopup"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { defineProps, onMounted, onUnmounted, ref } from "vue";
+import '@fortawesome/fontawesome-free/css/all.css';
+import NewsCard from "~/components/NewsCard/NewsCard.vue";
+
+const props = defineProps({
+  newsItem: Object,
+});
+
+const scrollContainer = ref(null);
+const popupHeader = ref(null);
+const isHeaderFixed = ref(false);
+const popupTitle = ref(null);
+const isMobile = ref(false);
+
+//Обновление скроллбара
+const updateProgressBar = () => {
+  if (scrollContainer.value) {
+    const progressBar = document.querySelector('.scroll-progress');
+    const containerHeight = scrollContainer.value.scrollHeight - scrollContainer.value.clientHeight;
+    const scrollPosition = scrollContainer.value.scrollTop;
+    const width = (scrollPosition / containerHeight) * 100;
+    progressBar.style.width = `${width}%`;
+  }
+};
+
+const checkDeviceType = () => {
+  isMobile.value = window.innerWidth <= 768;
+};
+
+window.addEventListener('resize', checkDeviceType);
+
+//Отслеживание скролла
+let lastScrollTop = 0;
+const handleScroll = () => {
+  const scrollTop = scrollContainer.value.scrollTop;
+  if (scrollTop - lastScrollTop) {
+    lastScrollTop = scrollTop;
+    window.requestAnimationFrame(() => {
+      updateProgressBar();
+      checkHeaderPosition();
+    });
+  }
+};
+
+const checkHeaderPosition = () => {
+  if (!popupHeader.value || !popupTitle.value || !scrollContainer.value) return;
+
+  const headerRect = popupHeader.value.getBoundingClientRect();
+  const titleRect = popupTitle.value.getBoundingClientRect();
+  const containerRect = scrollContainer.value.getBoundingClientRect();
+
+  // Проверка, скрылся ли заголовок из вида
+  isHeaderFixed.value = titleRect.bottom < containerRect.top;
+};
+
+onMounted(() => {
+  scrollContainer.value.addEventListener('scroll', handleScroll);
+  checkHeaderPosition();
+  checkDeviceType();
+});
+
+onUnmounted(() => {
+  if (scrollContainer.value) {
+    scrollContainer.value.removeEventListener('scroll', handleScroll);
+  }
+});
+
+</script>
+
+<style scoped>
+@import "assets/styles/components/NewsPopup.scss";
+</style>

@@ -1,0 +1,248 @@
+@import "../fontFamily";
+//Весь попап (с затемнением)
+.news-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 5em;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.3);
+}
+//Весь попап (видимая часть)
+.popup-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  width: calc(100% - 4em);
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 1em;
+  background: #fff;
+
+  //Контейнер для скролла
+  &__scroll-container{
+    width: 90%;
+    overflow-wrap: normal;
+    overflow-y: scroll;
+    overflow-x: visible;
+    scroll-behavior: smooth;
+
+    // Скрыть стандартный скроллбар
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  //Контейнер для контента
+  &__content-container{
+    position: relative;
+    width: 65%;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    max-height: 87vh;
+
+    @media (max-width: 768px){
+      width: 90%;
+      margin-left: 2em;
+    }
+
+  }
+}
+//Крестик закрытия
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ca2250;
+  border-radius: .3em;
+  padding: 0 .3em;
+  color: #fff;
+  font-size: 3em;
+  font-weight: 100;
+  transition: background-color 0.3s ease-out;
+
+  &:hover{
+    background-color: lighten(#ca2250, 15%);
+    cursor: pointer;
+  }
+
+  &__icon{
+    right: 0;
+    top: 0;
+  }
+}
+//Кастомный скролл
+.scroll-progress {
+  width: 0;
+  max-width: 93.5%;
+  height: 2px;
+  margin-left: .7em;
+  border-radius: 1px;
+  opacity: .6;
+  background: linear-gradient(to right, orange, purple);
+  z-index: 100;
+
+  @media (max-width: 768px) {
+    max-width: 90%;
+  }
+}
+//хедер попапа
+.popup-header{
+  .bread{
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+    width: 100%;
+    @media (max-width: 768px) {
+      margin-left: 3.5%;
+      padding-top: .5em;
+    }
+
+    &__item{
+      text-transform: uppercase;
+      font-size: calc(.3em + .5vw);
+      &:last-child{
+        opacity: .4;
+      }
+      &:not(:last-child){
+        margin-right: .5em;
+        &::after{
+          content: "•";
+          margin-left: .5em;
+        }
+      }
+    }
+  }
+  //Хедер, только название, после проскрола названия
+  &.title_only{
+    .bread__item:not(:last-child) {
+      display: none;
+    }
+    .bread__item:last-child {
+      opacity: 1;
+      font-family: Onest-Black;
+      font-size: calc(.5em + .5vw);
+      margin-left: auto;
+      margin-right: auto;
+      padding-top: .5em;
+      @media (max-width: 768px) {
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+  //Хедер закреплен
+  &.is_fixed {
+    position: fixed;
+    width: 60%;
+    height: 10%;
+    top: 5.12em;
+    left: 17%;
+    right: auto;
+    background: #fff;
+    z-index: 100;
+
+    //Подсветка белая
+    &::after {
+      content: '';
+      position: absolute;
+      top: calc(10% + 2em);
+      left: 0;
+      right: 0;
+      height: 3em;
+      background: linear-gradient(180deg,#fff,hsla(0,0%,100%,0));
+      z-index: 90;
+      @media (max-width: 650px) {
+        top: calc(10% + 3em);
+      }
+    }
+
+    @media (max-width: 768px) {
+      height: 10%;
+      width: calc(100% - 9em);
+      border-radius: 1em;
+      left: calc(2em + 2vw);
+      right: 0;
+    }
+
+  }
+}
+
+//Контент попапа
+.popup-content {
+  margin-top: 1em;
+  padding-bottom: 2em;
+  p{
+    font-size: calc(.4em + .5vw);
+    color: #717070;
+    width: 60%;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 1em;
+    object-fit: cover;
+  }
+  h3{
+    font-family: Onest-ExtraBold, sans-serif;
+    margin-top: .5em;
+    margin-bottom: .5em;
+    font-size: calc(0.8em + 2vw);
+  }
+  //Медиа для всего контента
+  @media (max-width: 768px) {
+    margin-top: 5em;
+    padding-bottom: 7em;
+
+    p{
+      font-size: calc(1em + 1vw);
+      width: 100%;
+    }
+    h3{
+      font-size: calc(1.2em + 3vw);
+    }
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5em;
+  span {
+    padding: .2em .7em;
+    border: 1px solid;
+    border-radius: 2em;
+    font-size: calc(0.1em + 1vw);
+    @media (max-width: 768px) {
+      font-size: calc(0.3em + 1vw);
+    }
+  }
+}
+
+.popup-title{
+  font-size: calc(0.8em + 2vw);
+  line-height: calc(1em + 1vw);
+  font-family: 'Onest-Black', sans-serif;
+  margin-top: .5em;
+  margin-bottom: .3em;
+  @media (max-width: 768px) {
+    font-size: calc(1.2em + 3vw);
+  }
+}
+
+.popup-news-date{
+  font-size: calc(.1em + 1vw);
+  text-decoration: underline;
+  opacity: .3;
+  text-transform: uppercase;
+  @media (max-width: 768px) {
+    font-size: calc(.1em + 2vw);
+  }
+}
+
