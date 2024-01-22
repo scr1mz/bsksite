@@ -48,8 +48,9 @@
     max-height: 87vh;
 
     @media (max-width: 768px){
-      width: 90%;
+      width: 80%;
       margin-left: 2em;
+      margin-top: 4.5em;
     }
 
   }
@@ -140,7 +141,7 @@
   //Хедер закреплен
   &.is_fixed {
     position: fixed;
-    width: 60%;
+    width: 62%;
     height: 10%;
     top: 5.12em;
     left: 17%;
@@ -202,7 +203,7 @@
 
     p{
       font-size: calc(1em + 1vw);
-      width: 100%;
+      width: 90%;
     }
     h3{
       font-size: calc(1.2em + 3vw);
