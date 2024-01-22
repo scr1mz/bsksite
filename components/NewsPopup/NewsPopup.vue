@@ -78,8 +78,6 @@ const checkDeviceType = () => {
   isMobile.value = window.innerWidth <= 768;
 };
 
-window.addEventListener('resize', checkDeviceType);
-
 //Отслеживание скролла
 let lastScrollTop = 0;
 const handleScroll = () => {
@@ -105,13 +103,16 @@ const checkHeaderPosition = () => {
 };
 
 onMounted(() => {
-  scrollContainer.value.addEventListener('scroll', handleScroll);
+  if (scrollContainer.value && scrollContainer.value instanceof HTMLElement) {
+    scrollContainer.value.addEventListener('scroll', handleScroll);
+  }
+  window.addEventListener('resize', checkDeviceType);
   checkHeaderPosition();
   checkDeviceType();
 });
 
 onUnmounted(() => {
-  if (scrollContainer.value) {
+  if (scrollContainer.value && scrollContainer.value instanceof HTMLElement) {
     scrollContainer.value.removeEventListener('scroll', handleScroll);
   }
 });
