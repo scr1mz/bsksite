@@ -115,6 +115,7 @@ onUnmounted(() => {
   if (scrollContainer.value && scrollContainer.value instanceof HTMLElement) {
     scrollContainer.value.removeEventListener('scroll', handleScroll);
   }
+  window.removeEventListener('resize', checkDeviceType);
 });
 
 </script>
