@@ -17,18 +17,18 @@
   }
 
   .news-card__image-block {
-    border-radius: 10px 0 0 10px;
+    border-radius: 14px;
     overflow: hidden;
     width: 30%;
+    font-size: 0;
     @media (max-width: 768px){
       width: 40%;
     }
-  }
-
-  img {
-    width: 100%;
-    height: auto;
-    border-radius: 1em;
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 1em;
+    }
   }
 
   .news-card__content {
