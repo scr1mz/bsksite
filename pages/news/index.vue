@@ -15,13 +15,15 @@ const newsData = ref([]);
 const Url = "https://bsk-admin.testers-site.ru/api/news/novogodnee-vesele-ot-kompanii-bsk-kak-proshla-yelkabsk-v-2023-godu";
 
 const {data, error} = await useFetch(Url);
-watchEffect(() => {
-  if (data.value?.data?.result) {
-    newsData.value = [data.value.data.result];
-  } else if (error.value) {
-    console.error("Ошибка: данные не найдены", error.value);
-  }
-});
+  data.value?.then(response => {
+    if (response?.data?.result) {
+      newsData.value = [response.data.result];
+    } else {
+      console.error("Ошибка: данные не найдены");
+    }
+  }).catch(err => {
+    console.error("Произошла ошибка при запросе данных:", err);
+  });
 
 function openPopup(newsItem) {
   router.push(`/news/${newsItem.code}`);
