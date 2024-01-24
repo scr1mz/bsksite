@@ -35,7 +35,7 @@
             <!-- Контент -->
             <div v-for="(item, index) in newsItem.content" :key="index">
               <p v-if="item.type === 'text'">{{ item.content }}</p>
-              <img v-if="item.type === 'mediaBlock'" :src="item.element.src" alt="News Image"/>
+              <img class="popup-content__img" v-if="item.type === 'mediaBlock'" :src="item.element.src" alt="News Image"/>
             </div>
 
             <!-- Следующая статья -->

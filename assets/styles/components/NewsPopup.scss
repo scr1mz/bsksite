@@ -184,8 +184,8 @@
     color: #717070;
     width: 60%;
   }
-  img {
-    max-width: 100%;
+  &__img {
+    width: 100%;
     height: auto;
     border-radius: 1em;
     object-fit: cover;
