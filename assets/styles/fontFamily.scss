@@ -1,62 +1,123 @@
+//Onest
+
 @font-face {
   font-family: 'Onest-Thin';
-  src: url('assets/fonts/Onest-Thin.ttf') format('truetype');
+  src: url('../fonts/Onest/Onest-Thin.ttf') format('truetype');
   font-weight: 100;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Onest-ExtraLight';
-  src: url('assets/fonts/Onest-ExtraLight.ttf') format('truetype');
+  src: url('../fonts/Onest/Onest-ExtraLight.ttf') format('truetype');
   font-weight: 200;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Onest-Light';
-  src: url('assets/fonts/Onest-Light.ttf') format('truetype');
+  src: url('../fonts/Onest/Onest-Light.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Onest-Regular';
-  src: url('assets/fonts/Onest-Regular.ttf') format('truetype');
+  src: url('../fonts/Onest/Onest-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Onest-Medium';
-  src: url('assets/fonts/Onest-Medium.ttf') format('truetype');
+  src: url('../fonts/Onest/Onest-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Onest-SemiBold';
-  src: url('assets/fonts/Onest-SemiBold.ttf') format('truetype');
+  src: url('../fonts/Onest/Onest-SemiBold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Onest-Bold';
-  src: url('assets/fonts/Onest-Bold.ttf') format('truetype');
+  src: url('../fonts/Onest/Onest-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Onest-ExtraBold';
-  src: url('assets/fonts/Onest-ExtraBold.ttf') format('truetype');
+  src: url('../fonts/Onest/Onest-ExtraBold.ttf') format('truetype');
   font-weight: 800;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Onest-Black';
-  src: url('assets/fonts/Onest-Black.ttf') format('truetype');
+  src: url('../fonts/Onest/Onest-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+
+//Unbounded
+
+@font-face {
+  font-family: 'Unbounded-ExtraLight';
+  src: url('../fonts/Unbounded/Unbounded-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Unbounded-Light';
+  src: url('../fonts/Unbounded/Unbounded-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Unbounded-Regular';
+  src: url('../fonts/Unbounded/Unbounded-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Unbounded-Medium';
+  src: url('../fonts/Unbounded/Unbounded-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Unbounded-SemiBold';
+  src: url('../fonts/Unbounded/Unbounded-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Unbounded-Bold';
+  src: url('../fonts/Unbounded/Unbounded-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Unbounded-ExtraBold';
+  src: url('../fonts/Unbounded/Unbounded-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Unbounded-Black';
+  src: url('../fonts/Unbounded/Unbounded-Black.ttf') format('truetype');
   font-weight: 900;
   font-style: normal;
 }
