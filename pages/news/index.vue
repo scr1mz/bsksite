@@ -1,5 +1,5 @@
 <template>
-  <h1>Новости</h1>
+  <h1>Основные новости</h1>
   <section className="content__news">
     <NewsCard v-for="news in newsData" :key="news.id" :newsItem="news" @open-popup="openPopup"/>
   </section>

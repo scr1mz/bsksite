@@ -1,26 +1,36 @@
 <template>
   <div class="news-popup">
     <div class="popup-container">
-      <!-- Кнопка закрытия -->
-      <div class="close-button" @click="$emit('close-popup')">
-        <i class="fas fa-times close-button__icon"></i>
-      </div>
       <div class="scroll-progress"></div>
+      <!-- Хедер попап -->
+      <div class="popup-header" :class="{ 'is_fixed': isHeaderFixed || isMobile }" ref="popupHeader">
+        <div v-show="isHeaderFixed || isMobile" class="bread header-bread">
+          <ul :class=" { 'breadcrumbs' : true , 'title_only': isHeaderFixed }">
+            <li class="bread__item">главная</li>
+            <li class="bread__item">новости</li>
+            <li v-if="newsItem.title" class="bread__item">{{ newsItem.title }}</li>
+          </ul>
+        </div>
+        <!-- Кнопка закрытия -->
+        <div class="close-button" @click="$emit('close-popup')">
+          <i class="fas fa-times close-button__icon"></i>
+        </div>
+      </div>
+      <!-- Контейнер скролла -->
       <div class="popup-container__scroll-container" ref="scrollContainer">
         <!-- Контейнер попап -->
         <div class="popup-container__content-container">
-          <!-- Хедер попап -->
-          <div class="popup-header" :class="{ 'is_fixed': isHeaderFixed || isMobile, 'title_only': isHeaderFixed }" ref="popupHeader">
-            <ul class="bread">
-              <li class="bread__item">главная</li>
-              <li class="bread__item">новости</li>
-              <li v-if="newsItem.title" class="bread__item">{{ newsItem.title }}</li>
-            </ul>
-          </div>
           <!-- Попап контент -->
           <div class="popup-content">
+            <div v-show="!isHeaderFixed && !isMobile" class="bread">
+              <ul :class=" { 'breadcrumbs' : true , 'title_only': isHeaderFixed }">
+                <li class="bread__item">главная</li>
+                <li class="bread__item">новости</li>
+                <li v-if="newsItem.title" class="bread__item">{{ newsItem.title }}</li>
+              </ul>
+            </div>
             <!-- Теги -->
-            <div v-if="newsItem.tags && newsItem.tags.length" class="tags">
+            <div v-show="newsItem.tags && newsItem.tags.length" class="tags">
           <span v-for="(tag, index) in newsItem.tags"
                 :key="index"
                 :style="{ color: tag.values[0].color, borderColor: tag.values[0].color }"
@@ -39,7 +49,7 @@
             </div>
 
             <!-- Следующая статья -->
-            <h3>Следующая статья</h3>
+            <h2>Следующая статья</h2>
             <NewsCard :newsItem="newsItem.next" @open-popup="openPopup"/>
           </div>
         </div>
@@ -94,10 +104,10 @@ const handleScroll = () => {
 const checkHeaderPosition = () => {
   if (!popupHeader.value || !popupTitle.value || !scrollContainer.value) return;
 
-  const headerRect = popupHeader.value.getBoundingClientRect();
   const titleRect = popupTitle.value.getBoundingClientRect();
   const containerRect = scrollContainer.value.getBoundingClientRect();
 
+  console.log("titleRect.bottom", titleRect.bottom, "containerRect.top", containerRect.top);
   // Проверка, скрылся ли заголовок из вида
   isHeaderFixed.value = titleRect.bottom < containerRect.top;
 };
