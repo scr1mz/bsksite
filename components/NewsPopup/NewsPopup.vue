@@ -23,7 +23,7 @@
           <!-- Попап контент -->
           <div class="popup-content">
             <div v-show="!isHeaderFixed && !isMobile" class="bread">
-              <ul :class=" { 'breadcrumbs' : true , 'title_only': isHeaderFixed }">
+              <ul :class=" { 'breadcrumbs' : true } ">
                 <li class="bread__item">главная</li>
                 <li class="bread__item">новости</li>
                 <li v-if="newsItem.title" class="bread__item">{{ newsItem.title }}</li>

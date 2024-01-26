@@ -167,13 +167,14 @@
   }
 }
 
+//Настройки карточки в попап
 .popup-container {
   .news-card {
     background: rgba(210, 210, 210, 0.3);
   }
   .arrow-mask{
     background: #fff;
-    top: 1em;
+    top: 0;
     @media (max-width: 768px) {
       top: auto;
       bottom: 0;
