@@ -15,7 +15,6 @@
   position: relative;
   height: 133%;
   padding: .3em;
-  margin-top: 1em;
   background: #fff;
   border-radius: 20px;
   overflow: hidden;
@@ -113,6 +112,14 @@
         font-size: calc(.1em + 2vw);
       }
     }
+    .blue{
+      color: #5b4481;
+      border-color: #5b4481;
+    }
+    .red{
+      color: #ca2250;
+      border-color: #ca2250;
+    }
   }
 
 }
@@ -160,15 +167,6 @@
   }
 }
 
-.arrow-icon i {
-  font-size: 2em;
-  font-weight: 100;
-  color: #ca2250;
-  @media (max-width: 768px) {
-    transform: rotate(-45deg);
-  }
-}
-
 .popup-container {
   .news-card {
     background: rgba(210, 210, 210, 0.3);
@@ -184,5 +182,14 @@
       border-top-left-radius: 1.25em;
       border-bottom-right-radius: 1.25em;
     }
+  }
+}
+
+.arrow-icon i {
+  font-size: 1.5em;
+  color: #ca2250;
+  z-index: 100;
+  @media (max-width: 768px) {
+    transform: rotate(-45deg);
   }
 }

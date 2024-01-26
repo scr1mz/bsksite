@@ -17,7 +17,6 @@ const Url = "https://bsk-admin.testers-site.ru/api/news/novogodnee-vesele-ot-kom
 const {data, error} = await useFetch(Url)
 if (data.value?.data?.result) {
   newsData.value = [data.value?.data.result];
-  console.log("Data: ", newsData.value);
 } else if (error.value) {
   console.error("Ошибка: данные не найдены", error.value);
 }

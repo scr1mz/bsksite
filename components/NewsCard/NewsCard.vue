@@ -14,7 +14,7 @@
         <div v-if="newsItem.tags && newsItem.tags.length" class="tags">
         <span v-for="(tag, index) in newsItem.tags"
               :key="index"
-              :style="{ color: tag.values[0].color, borderColor: tag.values[0].color }"
+              :class="{[tag.values[0].color] : true}"
         >
           {{ tag.values[0]?.name || '' }}
         </span>
@@ -23,7 +23,7 @@
     </div>
     <div class="arrow-mask">
       <div class="arrow-icon">
-        <i class="fas fa-arrow-right"></i>
+        <i class="far fa-long-arrow-right"></i>
       </div>
     </div>
   </div>

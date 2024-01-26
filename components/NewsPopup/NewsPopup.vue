@@ -33,7 +33,7 @@
             <div v-show="newsItem.tags && newsItem.tags.length" class="tags">
           <span v-for="(tag, index) in newsItem.tags"
                 :key="index"
-                :style="{ color: tag.values[0].color, borderColor: tag.values[0].color }"
+                :class="{[tag.values[0].color] : true}"
           >
             {{ tag.values[0]?.name || '' }}
           </span>

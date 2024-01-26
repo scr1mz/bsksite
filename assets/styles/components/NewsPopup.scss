@@ -42,7 +42,6 @@
     width: 65%;
     margin-left: auto;
     margin-right: auto;
-    padding-bottom: 6em;
     box-sizing: border-box;
     border-top-left-radius: 1em;
     border-top-right-radius: 1em;
@@ -60,6 +59,9 @@
   display: flex;
   position: absolute;
   align-items: center;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+  background: #fff;
   right: 0;
   z-index: 100;
 }
@@ -70,23 +72,27 @@
 }
 //Крошки заголовка
 .header-bread{
-  background: #fff;
-  border-top-left-radius: 1em;
   .breadcrumbs{
     margin-left: calc(15% + 1em);
     @media (max-width: 768px) {
-      margin-left: 2em;
+      margin-left: 1em;
     }
   }
 }
 .title_only{
+  align-items: flex-start;
   .bread__item:not(:last-child) {
     display: none;
   }
   .bread__item:last-child{
-    font-size: calc(.5em + .5vw);
+    margin-left: 1em;
+    margin-top: 0;
+    font-size: calc(.4em + .6vw);
     opacity: 1;
     font-family: 'Unbounded-Bold', sans-serif ;
+    @media (max-width: 768px) {
+      margin-left: 0;
+    }
   }
 }
 
@@ -156,10 +162,11 @@
 
 //Контент попапа
 .popup-content {
+  padding-bottom: 8em;
   p{
-    font-size: calc(.4em + .5vw);
+    font-size: calc(.4em + .6vw);
     color: #717070;
-    width: 60%;
+    width: 50%;
   }
   &__img {
     width: 100%;
@@ -175,11 +182,10 @@
   }
   //Медиа для всего контента
   @media (max-width: 768px) {
-    padding-top: 0;
-    padding-bottom: 0;
+    padding-top: 4em;
     p{
-      font-size: calc(1em + 1vw);
-      width: 90%;
+      font-size: calc(.3em + 2.5vw);
+      width: 100%;
     }
   }
 }
@@ -192,15 +198,23 @@
     padding: .2em .7em;
     border: 1px solid;
     border-radius: 2em;
-    font-size: calc(0.1em + 1vw);
+    font-size: calc(0.2em + .8vw);
     @media (max-width: 768px) {
-      font-size: calc(0.3em + 1vw);
+      font-size: calc(0.6em + .6vw);
     }
+  }
+  .blue{
+    color: #5b4481;
+    border-color: #5b4481;
+  }
+  .red{
+    color: #ca2250;
+    border-color: #ca2250;
   }
 }
 
 .popup-title{
-  font-size: calc(0.8em + 2vw);
+  font-size: calc(0.6em + 2vw);
   line-height: 1.2em;
   font-family: 'Unbounded-Bold', sans-serif;
   margin-top: .5em;
