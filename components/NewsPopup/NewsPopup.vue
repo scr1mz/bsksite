@@ -62,10 +62,13 @@
 import { defineProps, onMounted, onUnmounted, ref } from "vue";
 import '@fortawesome/fontawesome-free/css/all.css';
 import NewsCard from "~/components/NewsCard/NewsCard.vue";
+import {useRouter} from "nuxt/app";
 
 const props = defineProps({
   newsItem: Object,
 });
+
+const router = useRouter();
 
 const scrollContainer = ref(null);
 const popupHeader = ref(null);
@@ -111,6 +114,10 @@ const checkHeaderPosition = () => {
   // Проверка, скрылся ли заголовок из вида
   isHeaderFixed.value = titleRect.bottom < containerRect.top;
 };
+
+function openPopup(newsItem) {
+  router.push(`/news/${newsItem.code}`);
+}
 
 onMounted(() => {
   if (scrollContainer.value && scrollContainer.value instanceof HTMLElement) {
