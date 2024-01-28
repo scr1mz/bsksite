@@ -12,11 +12,13 @@ import {ref} from "vue";
 
 const router = useRouter();
 const newsData = ref([]);
-const Url = "https://bsk-admin.testers-site.ru/api/news/novogodnee-vesele-ot-kompanii-bsk-kak-proshla-yelkabsk-v-2023-godu";
+const Url = "https://bsk-admin.testers-site.ru/api/news?filter%5Btags%5D%5BTAG_TYPES%5D%5B0%5D=news&&page=1&filter%5BindexMode%5D=true";
 
-const {data, error} = await useFetch(Url)
-if (data.value?.data?.result) {
-  newsData.value = [data.value?.data.result];
+const {data: data, error} = await useFetch(Url);
+console.log("Полученные данные: ", data);
+if (data._value?.data?.result?.list) {
+  newsData.value = data._value.data.result.list;
+  console.log("Обработанные данные: ", newsData.value)
 } else if (error.value) {
   console.error("Ошибка: данные не найдены", error.value);
 }
