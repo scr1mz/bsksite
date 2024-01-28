@@ -2,6 +2,7 @@
 .news-data-content{
   display: flex;
   position: relative;
+  margin-bottom: 2em;
   //свечение стрелки при наведении на карточку
   &:hover{
     .arrow-icon{
@@ -13,7 +14,7 @@
 .news-card {
   display: flex;
   position: relative;
-  height: 133%;
+  height: 25vh;
   padding: .3em;
   background: #fff;
   border-radius: 20px;
@@ -22,6 +23,8 @@
   transition: all 0.3s ease-out;
   @media (max-width: 768px) {
     flex-direction: column;
+    height: 100%;
+    max-height: 90vh;
   }
   //Наведение на карточку
   &:hover {
@@ -57,17 +60,25 @@
   }
   //Блок для изображения
   &__image-block {
+    position: relative;
     border-radius: 20px;
     overflow: hidden;
-    width: 30%;
+    width: 20%;
+    height: 100%;
     font-size: 0;
+    will-change: transform;
     @media (max-width: 768px) {
       width: 100%;
+      height: auto;
     }
     img {
       width: 100%;
-      height: auto;
+      height: 100%;
       transition: all 0.2s ease-out;
+      object-fit: fill;
+      @media (max-width: 768px) {
+        object-fit: cover;
+      }
     }
   }
   //Основной контент карточки
