@@ -1,7 +1,14 @@
 <template>
   <h1>Основные новости</h1>
   <section className="content__news">
+    <!--Карточка новости-->
     <NewsCard v-for="news in newsData" :key="news.id" :newsItem="news" @open-popup="openPopup"/>
+    <!--Кнопка еще -->
+    <div class="base-btn news-more-btn" btn-style="pink" @click="nextPage">
+      <div class="base-btn__btn-content">
+        <span class="base-btn__btn-title">показать ещё</span>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -12,15 +19,25 @@ import {ref} from "vue";
 
 const router = useRouter();
 const newsData = ref([]);
-const Url = "https://bsk-admin.testers-site.ru/api/news?filter%5Btags%5D%5BTAG_TYPES%5D%5B0%5D=news&&page=1&filter%5BindexMode%5D=true";
+const page = ref(1);
 
-const {data: data, error} = await useFetch(Url);
-console.log("Полученные данные: ", data);
-if (data._value?.data?.result?.list) {
-  newsData.value = data._value.data.result.list;
-  console.log("Обработанные данные: ", newsData.value)
-} else if (error.value) {
-  console.error("Ошибка: данные не найдены", error.value);
+async function fetchData() {
+  const Url = `https://bsk-admin.testers-site.ru/api/news?filter%5Btags%5D%5BTAG_TYPES%5D%5B0%5D=news&&page=${page.value}&filter%5BindexMode%5D=true`;
+
+  const {data: data, error} = await useFetch(Url);
+  console.log("Полученные данные: ", data);
+  if (data._value?.data?.result?.list) {
+    newsData.value.push(...data._value.data.result.list);
+    console.log("Обработанные данные: ", newsData.value)
+  } else if (error.value) {
+    console.error("Ошибка: данные не найдены", error.value);
+  }
+}
+fetchData()
+
+function nextPage() {
+  page.value++;
+  fetchData();
 }
 
 function openPopup(newsItem) {
